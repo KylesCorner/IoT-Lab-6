@@ -21,7 +21,7 @@ constexpr size_t kNumActuators = sizeof(actuators) / sizeof(actuators[0]);
 // Basic scheduling
 uint32_t lastPrintMs = 0;
 
-int32_t hysterisisThreshold = 25; // mg threshold for motor control
+int32_t hysterisisThreshold = 15; // mg threshold for motor control
 
 void setup() {
   // put your setup code here, to run once:
@@ -110,6 +110,8 @@ void loop() {
       oled.printfLine(2, "M %.0f %.1f %.1f", imu.mx_uT(), imu.my_uT(), imu.mz_uT());
       oled.printfLine(3, "T %.1fC", imu.temp_C());
 
+      Serial.println("=======================\n");
+
     } 
 
     if(imu.hasReading()) {
@@ -125,9 +127,6 @@ void loop() {
     }
 
 
-    Serial.println("=======================\n");
 
   }
-
-  delay(50);
 }
